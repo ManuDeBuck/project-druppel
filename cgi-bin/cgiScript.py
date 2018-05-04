@@ -1,6 +1,8 @@
+#!/usr/bin/env python
+
 import cgi
 import random
-
+import ast
 
 def new_game(size=5):
     board = getRandomBoard(size)
@@ -65,16 +67,19 @@ def getPossibleMoves(board):
     return list(colors)
 
 
-def do_move(board, kleur, locatie=[0,0]):
+def do_move(board, kleur, locatie):
     """
-    >>> do_move({"board":[["red","blue","green"],["red","blue","green"],["red","red","green"]], "moves": ["red", "blue", "green"], "score": 3, "message": ""}, "blue", [0,0])
-    {'board': [['blue', 'blue', 'green'], ['blue', 'blue', 'green'], ['blue', 'blue', 'green']], 'moves': ['green', 'blue'], 'score': 4, 'message': ''}
-    >>> len(do_move({'board': [['blue', 'blue', 'green'], ['blue', 'blue', 'green'], ['blue', 'blue', 'green']], 'moves': ['green', 'blue'], 'score': 4, 'message': ''}, "green")["message"]) > 0
+    >>> all(kleur in do_move({"board":[["red","blue","green"],["red","blue","green"],["red","red","green"]], "moves": ["red", "blue", "green"], "score": 3, "message": ""}, "blue", [0,0])["moves"] for kleur in ["blue", "green"])
     True
-    >>> len(do_move({'board': [['blue', 'blue', 'green'], ['blue', 'red', 'green'], ['blue', 'blue', 'green']], 'moves': ['green', 'blue'], 'score': 4, 'message': ''}, "green")["message"]) > 0
+    >>> do_move({"board":[["red","blue","green"],["red","blue","green"],["red","red","green"]], "moves": ["red", "blue", "green"], "score": 3, "message": ""}, "blue", [0,0])["board"]
+    [['blue', 'blue', 'green'], ['blue', 'blue', 'green'], ['blue', 'blue', 'green']]
+    >>> len(do_move({'board': [['blue', 'blue', 'green'], ['blue', 'blue', 'green'], ['blue', 'blue', 'green']], 'moves': ['green', 'blue'], 'score': 4, 'message': ''}, "green", [0,0])["message"]) > 0
+    True
+    >>> len(do_move({'board': [['blue', 'blue', 'green'], ['blue', 'red', 'green'], ['blue', 'blue', 'green']], 'moves': ['green', 'blue'], 'score': 4, 'message': ''}, "green", [0,0])["message"]) > 0
     False
     """
-    greetings = ["Hello, sunshine!","Howdy  partner!","Hey, howdy hi!","What’s kickin’, little chicken?","Peek-a-boo!","Howdy-doody!","My name's Ralph, and I'm a bad guy.","Hi  mister!","I come in peace!","Put that cookie down!","Ahoy, matey!","Hiya!","‘Ello, gov'nor!","Top of the mornin’ to ya!","What’s crackin’?","GOOOOOD MORNING  VIETNAM!","‘Sup  homeslice?","This call may be recorded for training purposes.","Howdy, howdy, howdy!","Hi, my name is Lion. Pleased to eat you.","I'm Batman.","At least  we meet for the first time for the last time!","Hello, who's there, I'm talking.","Here's Johnny!","You know who this is.","Ghostbusters, whatya want?","Yo!","Whaddup.","Greetings and salutations!","Hellon it's me."]
+    greetings = ["Hello, sunshine!","Howdy  partner!","Hey, howdy hi!","What's kickin', little chicken?","Peek-a-boo!","Howdy-doody!","My name's Ralph, and I'm a bad guy.","Hi  mister!","I come in peace!","Put that cookie down!","Ahoy, matey!","Hiya!","'Ello, gov'nor!","Top of the mornin' to ya!","What's crackin'?","GOOOOOD MORNING  VIETNAM!","'Sup  homeslice?","This call may be recorded for training purposes.","Howdy, howdy, howdy!","Hi, my name is Lion. Pleased to eat you.","I'm Batman.","At least  we meet for the first time for the last time!","Hello, who's there, I'm talking.","Here's Johnny!","You know who this is.","Ghostbusters, whatya want?","Yo!","Whaddup.","Greetings and salutations!","Hellon it's me."]
+    locatie = [int(locatie[0]), int(locatie[1])]
     score = board["score"] + 1
     bordvoorstelling = board["board"]
     assert kleur in board["moves"], "Kleur kan niet gespeeld worden"
@@ -158,3 +163,11 @@ def getBuren(bordvoorstelling, huidigeLocatie):
 if __name__ == "__main__":
     import doctest
     print(doctest.testmod())
+
+parameters = cgi.FieldStorage()
+print ('Content-Type: application/json\n\n')
+
+if parameters.getvalue("ACTIE") == "new":
+    print(new_game(int(parameters.getvalue("GROOTTE"))))
+elif parameters.getvalue("ACTIE") == "action":
+    print(do_move(ast.literal_eval(parameters.getvalue("BOARD")), parameters.getvalue("COLOR"), ast.literal_eval(parameters.getvalue("LOCATION"))))

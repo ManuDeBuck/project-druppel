@@ -69,9 +69,9 @@ def do_move(board, kleur, locatie=[0,0]):
     """
     >>> do_move({"board":[["red","blue","green"],["red","blue","green"],["red","red","green"]], "moves": ["red", "blue", "green"], "score": 3, "message": ""}, "blue", [0,0])
     {'board': [['blue', 'blue', 'green'], ['blue', 'blue', 'green'], ['blue', 'blue', 'green']], 'moves': ['green', 'blue'], 'score': 4, 'message': ''}
-    >>> do_move({'board': [['blue', 'blue', 'green'], ['blue', 'blue', 'green'], ['blue', 'blue', 'green']], 'moves': ['green', 'blue'], 'score': 4, 'message': ''}, "green")["message"] != ""
+    >>> len(do_move({'board': [['blue', 'blue', 'green'], ['blue', 'blue', 'green'], ['blue', 'blue', 'green']], 'moves': ['green', 'blue'], 'score': 4, 'message': ''}, "green")["message"]) > 0
     True
-    >>> do_move({'board': [['blue', 'blue', 'green'], ['blue', 'red', 'green'], ['blue', 'blue', 'green']], 'moves': ['green', 'blue'], 'score': 4, 'message': ''}, "green")["message"] != ""
+    >>> len(do_move({'board': [['blue', 'blue', 'green'], ['blue', 'red', 'green'], ['blue', 'blue', 'green']], 'moves': ['green', 'blue'], 'score': 4, 'message': ''}, "green")["message"]) > 0
     False
     """
     greetings = ["Hello, sunshine!","Howdy  partner!","Hey, howdy hi!","What’s kickin’, little chicken?","Peek-a-boo!","Howdy-doody!","My name's Ralph, and I'm a bad guy.","Hi  mister!","I come in peace!","Put that cookie down!","Ahoy, matey!","Hiya!","‘Ello, gov'nor!","Top of the mornin’ to ya!","What’s crackin’?","GOOOOOD MORNING  VIETNAM!","‘Sup  homeslice?","This call may be recorded for training purposes.","Howdy, howdy, howdy!","Hi, my name is Lion. Pleased to eat you.","I'm Batman.","At least  we meet for the first time for the last time!","Hello, who's there, I'm talking.","Here's Johnny!","You know who this is.","Ghostbusters, whatya want?","Yo!","Whaddup.","Greetings and salutations!","Hellon it's me."]

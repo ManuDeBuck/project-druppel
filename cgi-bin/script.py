@@ -31,7 +31,9 @@ def getRandomBoard(size=5):
         AssertionError: Ongeldige grootte van het spelbord
         """
     assert size >= 0, "Ongeldige grootte van het spelbord"
-    kleuren = ["purple", "orange", "red", "blue", "green", "yellow"]
+    with open("colors.txt", "r") as file:
+        kleuren = file.readlines();
+    kleuren = random.sample(kleuren, size)
     board = []
     for i in range(size):
         rij = []

@@ -17,7 +17,15 @@ Function.prototype.method = function(name, func) {
 
 class Spelbord {
 
-    constructor(){
+    constructor(args){
+        this.grootte = args.grootte;
+
+        this.selector = args.selector;
+
+        this.createGrid()
+    }
+
+    createGrid(){
 
     }
 

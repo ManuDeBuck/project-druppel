@@ -12,15 +12,17 @@
 
 </head>
 <body>
+<div class="teller" id="teller"></div>
 <div class="spelbord" id="spelbord"></div>
-<select id="opties"></select>
+<select id="opties" size="10"></select>
 <script src="javascript/board.js"></script>
 <script>
 
     const spelbord = new Spelbord({
         grootte : 5,
         bordselector: '#spelbord',
-        kleurselector: '#opties'
+        kleurselector: '#opties',
+        tellerselector: '#teller'
     });
 
 </script>

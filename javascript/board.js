@@ -34,13 +34,15 @@ class Spelbord {
 
         this.$options = $(this.kleurselector);
 
+        this.$teller = $(args.tellerselector);
+
         this.createGrid()
 
     }
 
     createGrid(){
 
-        fetch('../cgi-bin/script.py?ACTIE=new&GROOTTE=' + this.grootte.toString())
+        fetch('cgi-bin/script.py?ACTIE=new&GROOTTE=' + this.grootte.toString())
                         .then(response => response.json())
                         .then(res => {
 
@@ -58,7 +60,7 @@ class Spelbord {
 
         let kleur = $( "#opties" ).val();
 
-        fetch('../cgi-bin/script.py?ACTIE=action&BOARD=' + JSON.stringify(this.json) + "&COLOR=" + kleur + "&LOCATION=[0,0]")
+        fetch('cgi-bin/script.py?ACTIE=action&BOARD=' + JSON.stringify(this.json) + "&COLOR=" + kleur + "&LOCATION=[0,0]")
             .then(response => response.json())
             .then(res => {
 
@@ -91,11 +93,16 @@ class Spelbord {
         this.$options.empty();
         let options = json["moves"];
         for(let i = 0; i < options.length; i++){
-            console.log(options[i]);
             this.$options.append($("<option></option>")
                 .attr("value",options[i])
+                .css("color", options[i])
                 .text(options[i]));
         }
+    }
+
+    adaptTeller(json){
+
+        this.$teller.html("a");
     }
 
 }

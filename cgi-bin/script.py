@@ -32,7 +32,7 @@ def getRandomBoard(size=5):
         AssertionError: Ongeldige grootte van het spelbord
         """
     assert size >= 0, "Ongeldige grootte van het spelbord"
-    with open("cgi-bin/colors.txt", "r") as file:
+    with open("colors.txt", "r") as file:
         kleuren = file.read().splitlines()
     kleuren = random.sample(kleuren, size)
     board = []

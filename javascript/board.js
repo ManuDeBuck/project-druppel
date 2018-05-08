@@ -21,7 +21,7 @@ class Spelbord {
         if(args.grootte < 2){
             throw {
                 name: "AssertionError",
-                message: "Bord moet ten minste grotte 2 hebben"
+                message: "Bord moet ten minste grootte 2 hebben"
             }
         }
         this.grootte = args.grootte;

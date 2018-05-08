@@ -35,7 +35,7 @@ class Spelbord {
 
     createGrid(){
 
-        let druppels = $.get('http://localhost:8000/cgi-bin/script.py',{'ACTIE' : "new", 'GROOTTE' : this.grootte.toString()}); // opvragen van cgi script
+        let druppels = $.get('/cgi-bin/script.py',{'ACTIE' : "new", 'GROOTTE' : this.grootte.toString()}); // opvragen van cgi script
         console.log(druppels);
         /* const rooster = druppels.map((druppel, index) =>  {
             return `<div class="druppel" data-kleur = "${druppel}"></div>` + ((index % this.grootte === 0) ? "</tr><tr>" : "");

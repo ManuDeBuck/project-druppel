@@ -169,7 +169,9 @@ if __name__ == "__main__":
     print(doctest.testmod())
 
 parameters = cgi.FieldStorage()
-print ('Content-Type: application/json\n\n')
+
+print("Content-Type: application/json")
+print()
 
 if parameters.getvalue("ACTIE") == "new":
     print(json.dumps(new_game(int(parameters.getvalue("GROOTTE")))))

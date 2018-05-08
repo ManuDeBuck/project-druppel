@@ -8,18 +8,19 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
     <!-- Stylesheet -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
+
 </head>
 <body>
-<h1>Spelbordje</h1>
-<div id="spelbord"></div>
-
+<div class="spelbord" id="spelbord"></div>
+<select id="opties"></select>
 <script src="javascript/board.js"></script>
 <script>
 
     const spelbord = new Spelbord({
         grootte : 5,
-        selector: '#spelbord'
+        bordselector: '#spelbord',
+        kleurselector: '#opties'
     });
 
 </script>

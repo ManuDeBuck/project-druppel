@@ -3,6 +3,7 @@
 import cgi
 import random
 import ast
+import json
 
 def new_game(size=5):
     board = getRandomBoard(size)

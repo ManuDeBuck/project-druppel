@@ -93,7 +93,7 @@ def do_move(board, kleur, locatie):
     message = ""
     if(checkFinished(bordvoorstelling)):
         message = greetings[random.randint(0, len(greetings) - 1)] + "\n" + \
-                  "Congratulations, you finished the game in: " + str(score) + " rounds!"
+                  "You finished the game in: " + str(score) + " rounds!"
     return {'board': bordvoorstelling, 'moves': moves, 'score': score, 'message': message}
 
 
@@ -169,9 +169,7 @@ if __name__ == "__main__":
     print(doctest.testmod())
 
 parameters = cgi.FieldStorage()
-
-print("Content-Type: application/json")
-print()
+print("Content Type: text/html\n\n");
 
 if parameters.getvalue("ACTIE") == "new":
     print(json.dumps(new_game(int(parameters.getvalue("GROOTTE")))))

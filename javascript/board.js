@@ -40,7 +40,7 @@ class Spelbord {
 
     createGrid(){
 
-        fetch('/cgi-bin/script.py?ACTIE=new&GROOTTE=' + this.grootte.toString())
+        fetch('../cgi-bin/script.py?ACTIE=new&GROOTTE=' + this.grootte.toString())
                         .then(response => response.json())
                         .then(res => {
 
@@ -58,7 +58,7 @@ class Spelbord {
 
         let kleur = $( "#opties" ).val();
 
-        fetch('/cgi-bin/script.py?ACTIE=action&BOARD=' + JSON.stringify(this.json) + "&COLOR=" + kleur + "&LOCATION=[0,0]")
+        fetch('../cgi-bin/script.py?ACTIE=action&BOARD=' + JSON.stringify(this.json) + "&COLOR=" + kleur + "&LOCATION=[0,0]")
             .then(response => response.json())
             .then(res => {
 

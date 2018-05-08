@@ -170,6 +170,6 @@ parameters = cgi.FieldStorage()
 print ('Content-Type: application/json\n\n')
 
 if parameters.getvalue("ACTIE") == "new":
-    print(new_game(int(parameters.getvalue("GROOTTE"))))
+    print(json.dumps(new_game(int(parameters.getvalue("GROOTTE")))))
 elif parameters.getvalue("ACTIE") == "action":
-    print(do_move(ast.literal_eval(parameters.getvalue("BOARD")), parameters.getvalue("COLOR"), ast.literal_eval(parameters.getvalue("LOCATION"))))
+    print(json.dumps(do_move(ast.literal_eval(parameters.getvalue("BOARD")), parameters.getvalue("COLOR"), ast.literal_eval(parameters.getvalue("LOCATION")))))

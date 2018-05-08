@@ -50,6 +50,8 @@ class Spelbord {
 
                             this.adaptOptions(res);
 
+                            this.adaptTeller(res);
+
                             $(".druppel", this.$spelbord).click(this.klikDruppel.bind(this));
 
                             this.json = res;
@@ -67,6 +69,12 @@ class Spelbord {
                 this.adaptGrid(res);
 
                 this.adaptOptions(res);
+
+                this.adaptTeller(res);
+
+                if(res["message"] !== ""){
+                    this.showMessage(res);
+                }
 
                 $(".druppel", this.$spelbord).click(this.klikDruppel.bind(this));
 
@@ -95,14 +103,37 @@ class Spelbord {
         for(let i = 0; i < options.length; i++){
             this.$options.append($("<option></option>")
                 .attr("value",options[i])
+                .attr("class","kleuroptie")
+                .css("background-color", options[i])
                 .css("color", options[i])
                 .text(options[i]));
+            this.$options.attr("size", options.length + Math.ceil(0.20 * options.length));
+
         }
     }
 
     adaptTeller(json){
 
-        this.$teller.html("a");
+        this.$teller.html(json["score"]);
+
+    }
+
+    showMessage(json){
+
+        this.timer = window.setTimeout(() => {
+            alert(json["message"]);
+            this.createGrid();
+        }, 500);
+
+    }
+
+    setGrootte(grootte){
+
+        this.grootte = grootte;
+
+        this.createGrid();
+
+
     }
 
 }

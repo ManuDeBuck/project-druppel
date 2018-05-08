@@ -67,6 +67,7 @@ def getPossibleMoves(board):
     for row in board:
         for color in row:
             colors.add(color)
+    colors.remove(board[0][0])
     return list(colors)
 
 

@@ -7,9 +7,27 @@
 }
 
 body{
-    background-color: rgba(128, 128, 128, 0.39);
+    background-color: rgba(128,128,128,0.13);
 }
 
-h1 {
-    color: white;
+.optie {
+    overflow-y: auto;
+    border: 0px;
+    outline: none;
+    padding: 0px;
+}
+
+.kleuroptie{
+    height: 30px;
+    outline: none;
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    border-radius: 10px;
+    margin-bottom: 5px;
+    border: 1px solid black;
+}
+
+.kleuroptie:active {
+    border-color: white;
 }

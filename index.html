@@ -21,27 +21,39 @@
 
 </head>
 <body>
-
-<div class="container panel panel-default">
-    <div class="panel-heading">
-        <h2 class="title">Colored dots - Manu De Buck</h2>
-    </div>
-    <div class="panel-body">
-        <div class="row">
-            <div class="col-xs-2 col-s-12">
-                <h1><span class="label label-default" id="teller"></span></h1>
-                <select class="optie col-xs-12" id="opties"></select>
+<div class="modal" tabindex="-1" role="dialog" id="uitgespeeld">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="dialoogvensterTitel"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-            <div class="spelbord col-xs-10 col-centered" id="spelbord"></div>
-            <div class="col-xs-12">
-                <div class="input-group">
-                    <input type="text" class="form-control amount" placeholder="Choose amount of rows / columns..." value="5">
-                    <span class="input-group-btn">
-                <button class="btn btn-default btn-go" type="button">Play</button>
-                </span>
-                </div>
+            <div class="modal-body">
+                <p id="uitgespeeldtekst"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
             </div>
         </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-2 col-xs-12">
+            <h1><span class="label label-default" id="teller"></span></h1>
+            <select class="optie" id="opties"></select>
+            <div class="input-group">
+                <input type="text" class="form-control" id="amount" placeholder="Choose amount of rows / columns..." value="5">
+                <span class="input-group-btn">
+                    <button class="btn btn-default btn-go" type="button">Play</button>
+                </span>
+            </div>
+        </div>
+        <div class="col-md-10 col-xs-12">
+            <div id="spelbord"></div>
     </div>
 </div>
 
@@ -49,14 +61,14 @@
 <script>
 
     const spelbord = new Spelbord({
-        grootte : 5,
+        grootte : $("#amount").val(),
         bordselector: '#spelbord',
         kleurselector: '#opties',
         tellerselector: '#teller'
     });
 
     $(".btn-go").click(() => {
-        spelbord.setGrootte($(".amount").val());
+        spelbord.setGrootte($("#amount").val());
     });
 
 </script>

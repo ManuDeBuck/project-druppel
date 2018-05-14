@@ -18,13 +18,6 @@ Function.prototype.method = function(name, func) {
 class Spelbord {
 
     constructor(args){
-        if(args.grootte < 2){
-            throw {
-                name: "AssertionError",
-                message: "Bord moet ten minste grootte 2 hebben"
-            }
-        }
-        this.grootte = args.grootte;
 
         this.bordselector = args.bordselector;
 
@@ -36,7 +29,7 @@ class Spelbord {
 
         this.$teller = $(args.tellerselector);
 
-        this.createGrid()
+        this.setGrootte(args.grootte);
 
     }
 
@@ -61,6 +54,8 @@ class Spelbord {
     klikDruppel(event){
 
         let kleur = $( "#opties" ).val();
+
+        if(kleur === null) return;
 
         fetch('cgi-bin/script.py?ACTIE=action&BOARD=' + JSON.stringify(this.json) + "&COLOR=" + kleur + "&LOCATION=[0,0]")
             .then(response => response.json())
@@ -94,7 +89,7 @@ class Spelbord {
                 toevoeg += "</tr><tr>";
             }
         }
-        this.$spelbord.html("<table><tr>" + toevoeg + "</tr></table>");
+        this.$spelbord.html("<table class='spelbordtable'><tr>" + toevoeg + "</tr></table>");
     }
 
     adaptOptions(json){
@@ -114,14 +109,15 @@ class Spelbord {
 
     adaptTeller(json){
 
-        this.$teller.html(json["score"]);
+        this.$teller.html('Score: ' + json["score"]);
 
     }
 
     showMessage(json){
 
         this.timer = window.setTimeout(() => {
-            alert(json["message"]);
+            $("#uitgespeeldtekst").text(json["message"]);
+            $("#uitgespeeld").modal();
             this.createGrid();
         }, 500);
 
@@ -129,10 +125,16 @@ class Spelbord {
 
     setGrootte(grootte){
 
+        if(grootte < 2 || grootte > 15){
+            throw {
+                name: "AssertionError",
+                message: "Bord moet ten minste grootte 2 hebben, en maximaal grootte 15"
+            }
+        }
+
         this.grootte = grootte;
 
         this.createGrid();
-
 
     }
 

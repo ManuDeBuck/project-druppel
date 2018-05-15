@@ -92,7 +92,7 @@ def do_move(board, kleur, locatie):
     moves = getPossibleMoves(bordvoorstelling)
     message = ""
     if(checkFinished(bordvoorstelling)):
-        message = greetings[random.randint(0, len(greetings) - 1)] + "\n" + \
+        message = greetings[random.randint(0, len(greetings) - 1)] + "\n \n" + \
                   "You finished the game in: " + str(score) + " rounds!"
     return {'board': bordvoorstelling, 'moves': moves, 'score': score, 'message': message}
 

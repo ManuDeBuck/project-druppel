@@ -1,4 +1,5 @@
-Function.prototype.method = function(name, func) {
+// momenteel nog niet nodig, kan mogelijks verwijderd worden.
+/* Function.prototype.method = function(name, func) {
 
     if (!this.prototype.hasOwnProperty(name)) {
         Object.defineProperty(
@@ -13,24 +14,28 @@ Function.prototype.method = function(name, func) {
 
     return this;
 
-};
+}; */
 
 class Spelbord {
 
     constructor(args){
 
+        // selector voor het huidige spelbord
         this.bordselector = args.bordselector;
 
+        // selector voor het select attribuut op de webpagine
         this.kleurselector = args.kleurselector;
 
+        // het hudige spelbord
         this.$spelbord = $(this.bordselector);
 
+        // het select attribuut van het huidige spelbord
         this.$options = $(this.kleurselector);
 
+        // de de score
         this.$teller = $(args.tellerselector);
 
-        this.druppelGroottes = {8: "druppelgroot", 10: "druppelmedium", 15: "druppelklein"};
-
+        // zet de grootte van het spelbord, dit roept ook initialisatie aan van het spelbord
         this.setGrootte(args.grootte);
 
     }
@@ -120,8 +125,9 @@ class Spelbord {
     showMessage(json){
 
         this.timer = window.setTimeout(() => {
-            $("#uitgespeeldtekst").text(json["message"]);
-            $("#uitgespeeld").modal();
+            $("#dialoogvensterTitel").text("Congratulations")
+            $("#dialoogvensterTekst").text(json["message"]);
+            $("#dialoogvenster").modal();
             this.createGrid();
         }, 500);
 

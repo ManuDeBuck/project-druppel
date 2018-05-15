@@ -29,6 +29,8 @@ class Spelbord {
 
         this.$teller = $(args.tellerselector);
 
+        this.druppelGroottes = {8: "druppelgroot", 10: "druppelmedium", 15: "druppelklein"};
+
         this.setGrootte(args.grootte);
 
     }
@@ -48,6 +50,7 @@ class Spelbord {
                             $(".druppel", this.$spelbord).click(this.klikDruppel.bind(this));
 
                             this.json = res;
+
                         });
     }
 
@@ -80,10 +83,11 @@ class Spelbord {
     adaptGrid(json){
         let tabel = json["board"];
         let toevoeg = "";
+        let diam = (400 / tabel.length);
         for(let i = 0; i < tabel.length; i++){
             let rij = tabel[i];
             for(let j = 0; j < rij.length; j++){
-                toevoeg += `<td><div class="druppel" data-kleur="${rij[j]}" style="background-color:${rij[j]}"></div></td>`;
+                toevoeg += `<td><div class="druppel" data-kleur="${rij[j]}" style="background-color:${rij[j]}; width: ${diam}px; height: ${diam}px;"></div></td>`;
             }
             if(i !== tabel.length - 1){
                 toevoeg += "</tr><tr>";
@@ -99,6 +103,7 @@ class Spelbord {
             this.$options.append($("<option></option>")
                 .attr("value",options[i])
                 .attr("class","kleuroptie")
+                .css("height", 400 / this.grootte)
                 .css("background-color", options[i])
                 .css("color", options[i])
                 .text(options[i]));

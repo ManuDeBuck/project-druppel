@@ -1,7 +1,5 @@
 .druppel {
     border-radius:  50%;
-    width: 50px;
-    height: 50px;
     cursor: pointer;
     margin:  2px;
 }
@@ -12,10 +10,12 @@ spelbordtable {
 }
 
 body {
+    background-color: rgba(0, 0, 0, 0.07);
     margin: 10px;
 }
 
 .optie {
+    background-color: rgba(0,0,0,0);
     overflow-y: auto;
     border: 0px;
     outline: none;
@@ -25,7 +25,6 @@ body {
 }
 
 .kleuroptie{
-    height: 30px;
     outline: none;
     text-indent: 100%;
     white-space: nowrap;

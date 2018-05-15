@@ -41,10 +41,10 @@
 </div>
 
 <div class="container">
-    <div class="row">
+    <div class="row vert-align">
         <div class="col-md-3 col-xs-12">
             <div class="input-group">
-                <input type="text" class="form-control" id="amount" placeholder="Choose amount of rows / columns..." value="5">
+                <input type="text" class="form-control" id="amount" placeholder="2 <= #rows <= 25" value="5">
                 <span class="input-group-btn">
                     <button class="btn btn-default btn-go" type="button">Play</button>
                 </span>
@@ -52,7 +52,7 @@
             <h1><span class="label-block label-default" id="teller"></span></h1>
             <select class="optie" id="opties"></select>
         </div>
-        <div class="col-md-9 col-xs-12">
+        <div class="col-md-9 col-xs-12" >
             <div id="spelbord"></div>
         </div>
 
@@ -66,7 +66,11 @@
         grootte : $("#amount").val(),
         bordselector: '#spelbord',
         kleurselector: '#opties',
-        tellerselector: '#teller'
+        tellerselector: '#teller',
+        spelbordgrootte: 650,
+        optiegrootte: 600,
+        mingrootte: 2,
+        maxgrootte: 25,
     });
 
     $(".btn-go").click(() => {

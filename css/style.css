@@ -2,6 +2,7 @@
     border-radius:  50%;
     cursor: pointer;
     margin:  2px;
+    box-shadow: 2px 1px 10px rgba(0, 0, 0, 0.51);
 }
 
 spelbordtable {
@@ -37,4 +38,18 @@ body {
 
 .kleuroptie:active {
     border-color: white;
+}
+
+.label-block {
+    font-weight: normal;
+    display: block;
+    padding: 6px 12px;
+    margin: 0;
+    border: 1px solid transparent;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25em;
+    width: 100%;
 }

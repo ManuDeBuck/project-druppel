@@ -103,13 +103,12 @@ class Spelbord {
             this.$options.append($("<option></option>")
                 .attr("value",options[i])
                 .attr("class","kleuroptie")
-                .css("height", 400 / this.grootte)
+                .css("height", 380 / this.grootte)
                 .css("background-color", options[i])
                 .css("color", options[i])
                 .text(options[i]));
-            this.$options.attr("size", options.length + Math.ceil(0.20 * options.length));
-
         }
+        this.$options.attr("size", options.length + Math.ceil(0.20 * options.length));
     }
 
     adaptTeller(json){

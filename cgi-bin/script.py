@@ -18,11 +18,10 @@ greetings = ["Hello, sunshine!", "Howdy  partner!", "Hey, howdy hi!", "What's ki
 
 def new_game(size=5):
     board = getRandomBoard(size)
-    inhoud = [[0, 0]]
-    moves = getPossibleMoves(board, inhoud)
+    moves = getPossibleMoves(board)
     score = 0
     message = ""
-    return {'board': board, 'moves': moves, 'score': score, 'message': message, 'inhoud': inhoud}
+    return {'board': board, 'moves': moves, 'score': score, 'message': message}
 
 
 def getRandomBoard(size=5):
@@ -94,8 +93,8 @@ def do_move(board, kleur, locatie):
     score = board["score"] + 1
     if(checkFinished(bordvoorstelling)):
         message = greetings[random.randint(0, len(greetings) - 1)] + \
-                  "You finished the game in: " + str(score) + " rounds!"
-    return {'board': board, 'moves': moves, 'score': score, 'message': message}
+                  " You finished the game in: " + str(score) + " rounds!"
+    return {'board': bordvoorstelling, 'moves': moves, 'score': score, 'message': message}
 
 
 def checkFinished(bordvoorstelling):
@@ -129,7 +128,7 @@ def doeDruppel(bordvoorstelling, kleur, locatie, score):
     """
     huidigekleur = bordvoorstelling[locatie[0]][locatie[1]]
     bordvoorstelling[locatie[0]][locatie[1]] = kleur
-    if(score > 1):
+    if(score >= 1):
         recDruppel(bordvoorstelling, huidigekleur, kleur, locatie, [])
     return bordvoorstelling
 

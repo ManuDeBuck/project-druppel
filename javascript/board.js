@@ -30,6 +30,9 @@ class Spelbord {
         // zet de grootte van het spelbord, dit roept ook initialisatie aan van het spelbord
         this.setGrootte(args.grootte);
 
+        // Het huidig geselecteerde kleur
+        this.geselecteerdekleur = null;
+
     }
 
     /**
@@ -75,18 +78,18 @@ class Spelbord {
      */
     klikCell(event){
 
-        // haal het huidig geselecteerde kleur op
-        let kleur = $( "#opties" ).val();
+        console.log(this.geselecteerdekleur);
 
         // doe niets als er momenteel geen kleur geselecteerd is
-        if(kleur !== null){
+        if(this.geselecteerdekleur !== null){
 
             // voer de actie uit, en pas alles aan afhankelijk van de data die geretourneerd wordt door het cgi-script
-            fetch('cgi-bin/script.py?ACTIE=action&BOARD=' + JSON.stringify(this.json) + "&COLOR=" + kleur + "&LOCATION=[0,0]")
+            fetch('cgi-bin/script.py?ACTIE=action&BOARD=' + JSON.stringify(this.json) + "&COLOR=" + this.geselecteerdekleur + "&LOCATION=[0,0]")
                 .then(response => response.json())
                 .then(res => {
 
                     this.verwerkData(res);
+                    console.log(res);
 
                 })
 
@@ -141,15 +144,28 @@ class Spelbord {
 
         // vul de opties in
         for(let i = 0; i < options.length; i++){
-            this.$options.append($('<option class="kleuroptie"></option>')
-                .attr('value',options[i])
+            this.$options.append($('<div class="kleuroptie" style="background-color: ' + options[i] + ' !important;"></div>')
+                .attr('data-kleur',options[i])
                 .css('height', this.optiegrootte / this.grootte)
-                .css('background-color', options[i])
-                .css('color', options[i]));
+                .click(this.pasKleurAan.bind(this))
+            );
         }
 
         // Stel de totale lengte van het select attribuut, afhankelijk van het aantal opties (om een scrollbar te vermijden)
         this.$options.attr("size", options.length);
+    }
+
+    pasKleurAan(event){
+
+        // Houd de huidig geselecteerde kleur bij
+        this.geselecteerdekleur = event.target.getAttribute("data-kleur");
+
+        // Alle andere elementen mogen geen merk meer hebben, dus alle selecties verwijderen
+        $('.kleuroptie').removeClass('geselecteerd');
+
+        // Geef het geselecteerde element duidelijk weer
+        $(event.target).addClass('geselecteerd');
+
     }
 
     /**

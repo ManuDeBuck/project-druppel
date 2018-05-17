@@ -1,19 +1,18 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 import cgi
 import random
 import ast
 import json
 
-greetings = ["Hello, sunshine!", "Howdy  partner!", "Hey, howdy hi!", "What's kickin', little chicken?", "Peek-a-boo!",
-             "Howdy-doody!", "My name's Ralph, and I'm a bad guy.", "Hi  mister!", "I come in peace!",
-             "Put that cookie down!", "Ahoy, matey!", "Hiya!", "'Ello, gov'nor!", "Top of the mornin' to ya!",
-             "What's crackin'?", "GOOOOOD MORNING  VIETNAM!", "'Sup  homeslice?",
-             "This call may be recorded for training purposes.", "Howdy, howdy, howdy!",
-             "Hi, my name is Lion. Pleased to eat you.", "I'm Batman.",
+greetings = ["Hello sunshine!", "Howdy  partner!", "Hi!", "What's kickin', little chicken?", "Peek-a-boo!",
+             "Howdy-doody!", "Hi  mister!", "I come in peace!",
+             "Put that cookie down!", "Ahoy, matey!", "Hiya!", "'Ello, gov'nor!",
+             "What's crackin'?", "GOOOOOD MORNING  VIETNAM!", "'Sup  homeslice?", "Howdy, howdy, howdy!",
+             "Hi, my name is Lion. Pleased to eat you.",
              "At least  we meet for the first time for the last time!", "Hello, who's there, I'm talking.",
-             "Here's Johnny!", "You know who this is.", "Ghostbusters, whatya want?", "Yo!", "Whaddup.",
-             "Greetings and salutations!", "Hellon it's me."]
+             "Here's Johnny!", "Ghostbusters, whatya want?", "Yo!", "Whaddup.",
+             "Greetings and salutations!", "Hello, it's me."]
 
 
 def new_game(size=5):
@@ -170,7 +169,9 @@ if __name__ == "__main__":
     print(doctest.testmod())
 
 parameters = cgi.FieldStorage()
-print("Content Type: text/html\n\n");
+
+print("Content-Type: application/json")
+print("")
 
 if parameters.getvalue("ACTIE") == "new":
     print(json.dumps(new_game(int(parameters.getvalue("GROOTTE")))))

@@ -1,20 +1,30 @@
-
+/*
+Body voor webpagina
+ */
 
 body {
     background-color: rgba(0, 0, 0, 0.07);
     margin: 10px;
 }
 
-.logo {
-    color: rgb(240, 240, 240);
+/*
+Stijl voor het spelbord
+ */
+
+.druppel {
+    border-radius:  50%;
+    cursor: pointer;
+    margin:  2px;
+    box-shadow: 2px 1px 10px rgba(0, 0, 0, 0.51);
 }
 
-.optie {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    width: 100%;
-    box-shadow: 3px 3px 50px rgba(0, 0, 0, 0.51);
+.spelbordtable {
+    margin: 0px auto;
 }
+
+/*
+Stijl voor de selectie van een kleur
+ */
 
 .kleuroptie {
     outline: none;
@@ -32,19 +42,11 @@ body {
     -webkit-transition: border-left 0.5s;
 }
 
-/*
-Stijl voor het spelbord
- */
-
-.druppel {
-    border-radius:  50%;
-    cursor: pointer;
-    margin:  2px;
-    box-shadow: 2px 1px 10px rgba(0, 0, 0, 0.51);
-}
-
-.spelbordtable {
-    margin: 0px auto;
+.optie {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    box-shadow: 3px 3px 50px rgba(0, 0, 0, 0.51);
 }
 
 /**

@@ -20,17 +20,17 @@ class Spelbord {
         // Stel de grootte van het spelbord in, gebruikt voor de verhouding van de grootte van een cel tov het aantal cellen
         this.spelbordgrootte = args.spelbordgrootte;
 
-        // Stel de grootte van een optie in, voor verhouding van grootte van optie tov het aantal opties
+        // Stel de grootte van een optie in, gebruikt voor verhouding van grootte van optie tov het aantal opties
         this.optiegrootte = args.optiegrootte;
 
         // Stel minimale en maximale grootte in
         this.mingrootte = args.mingrootte;
         this.maxgrootte = args.maxgrootte;
 
-        // zet de grootte van het spelbord, dit roept ook initialisatie aan van het spelbord
+        // zet de grootte van het spelbord, dit roept ook initialisatie van het spelbord aan
         this.setGrootte(args.grootte);
 
-        // Het huidig geselecteerde kleur
+        // Het huidig geselecteerde kleur, initieel leeg
         this.geselecteerdekleur = null;
 
     }
@@ -78,8 +78,6 @@ class Spelbord {
      */
     klikCell(event){
 
-        console.log(this.geselecteerdekleur);
-
         // doe niets als er momenteel geen kleur geselecteerd is
         if(this.geselecteerdekleur !== null){
 
@@ -89,7 +87,6 @@ class Spelbord {
                 .then(res => {
 
                     this.verwerkData(res);
-                    console.log(res);
 
                 })
 
@@ -115,7 +112,9 @@ class Spelbord {
             let rij = tabel[i];
 
             for(let j = 0; j < rij.length; j++){
+
                 tabelinhoud += `<td><div class="druppel" data-kleur="${rij[j]}" style="background-color:${rij[j]};width: ${diam}px; height: ${diam}px;"></div></td>`;
+
             }
 
             // Bij het creëren van de laatste rij is het onnodig een nieuwe, lege rij aan te maken
@@ -144,7 +143,7 @@ class Spelbord {
 
         // vul de opties in
         for(let i = 0; i < options.length; i++){
-            this.$options.append($('<div class="kleuroptie" style="background-color: ' + options[i] + ' !important;"></div>')
+            this.$options.append($('<div class="kleuroptie" style="background-color: ' + options[i] + ';"></div>')
                 .attr('data-kleur',options[i])
                 .css('height', this.optiegrootte / this.grootte)
                 .click(this.pasKleurAan.bind(this))

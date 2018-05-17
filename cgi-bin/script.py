@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 
 import cgi
 import random
@@ -171,6 +171,7 @@ if __name__ == "__main__":
 parameters = cgi.FieldStorage()
 
 print("Content-Type: application/json")
+print("")
 print("")
 
 if parameters.getvalue("ACTIE") == "new":

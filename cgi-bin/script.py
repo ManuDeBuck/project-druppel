@@ -37,7 +37,7 @@ def getRandomBoard(size=5):
     assert size > 0, "Ongeldige grootte van het spelbord"
     with open("colors.txt", "r") as file:
         kleuren = file.read().splitlines()
-    kleuren = random.sample(kleuren, size)
+    kleuren = random.sample(kleuren, min(size, 10))
     board = []
     for i in range(size):
         rij = []

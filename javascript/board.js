@@ -146,7 +146,7 @@ class Spelbord {
         for(let i = 0; i < options.length; i++){
             this.$options.append($('<div class="kleuroptie" style="background-color: ' + options[i] + ';"></div>')
                 .attr('data-kleur',options[i])
-                .css('height', this.optiegrootte / this.grootte)
+                .css('height', this.optiegrootte / options.length)
                 .click(this.pasKleurAan.bind(this))
             );
         }

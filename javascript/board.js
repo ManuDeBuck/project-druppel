@@ -81,8 +81,9 @@ class Spelbord {
         // doe niets als er momenteel geen kleur geselecteerd is
         if(this.geselecteerdekleur !== null){
 
+            console.log(event.target.getAttribute("data-rij"), event.target.getAttribute("data-kolom"));
             // voer de actie uit, en pas alles aan afhankelijk van de data die geretourneerd wordt door het cgi-script
-            fetch('cgi-bin/script.py?ACTIE=action&BOARD=' + JSON.stringify(this.json) + "&COLOR=" + this.geselecteerdekleur + "&LOCATION=[0,0]")
+            fetch('cgi-bin/script.py?ACTIE=action&BOARD=' + JSON.stringify(this.json) + "&COLOR=" + this.geselecteerdekleur + "&LOCATION=[" + event.target.getAttribute("data-rij") + "," + event.target.getAttribute("data-kolom") + "]")
                 .then(response => response.json())
                 .then(res => {
 
@@ -113,7 +114,7 @@ class Spelbord {
 
             for(let j = 0; j < rij.length; j++){
 
-                tabelinhoud += `<td><div class="druppel" data-kleur="${rij[j]}" style="background-color:${rij[j]};width: ${diam}px; height: ${diam}px;"></div></td>`;
+                tabelinhoud += `<td><div class="druppel" data-kleur="${rij[j]}" data-rij="${i}" data-kolom="${j}" style="background-color:${rij[j]};width: ${diam}px; height: ${diam}px;"></div></td>`;
 
             }
 

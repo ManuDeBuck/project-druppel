@@ -32,13 +32,6 @@ def getRandomBoard(size=5):
         >>> len(getRandomBoard(10)[0]) == 10
         True
         >>> getRandomBoard(-10)
-        Traceback (most recent call last):
-          File "/Applications/PyCharm.app/Contents/helpers/pycharm/docrunner.py", line 140, in __run
-            compileflags, 1), test.globs)
-          File "<doctest cgiscript.new_game[2]>", line 1, in <module>
-            new_game(-10)
-          File "/Users/manudebuck/PyCharmProjects/ProjectSTCGI/cgiscript.py", line 18, in new_game
-            assert size >= 0, "Ongeldige grootte van het spelbord"
         AssertionError: Ongeldige grootte van het spelbord
         """
     assert size > 0, "Ongeldige grootte van het spelbord"
@@ -86,7 +79,7 @@ def do_move(board, kleur, locatie):
     """
     bordvoorstelling = board["board"]
     score = board["score"]
-    bordvoorstelling = doeDruppel(bordvoorstelling, kleur, locatie, score)
+    bordvoorstelling = doeDruppel(bordvoorstelling, kleur, [0,0], score)
     moves = getPossibleMoves(bordvoorstelling)
     message = ""
     score = board["score"] + 1
@@ -166,7 +159,7 @@ def getBuren(bordvoorstelling, huidigeLocatie):
 
 if __name__ == "__main__":
     import doctest
-    print(doctest.testmod())
+    doctest.testmod()
 
 parameters = cgi.FieldStorage()
 

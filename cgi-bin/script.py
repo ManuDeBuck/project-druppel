@@ -157,9 +157,9 @@ def getBuren(bordvoorstelling, huidigeLocatie):
     return buren
 
 
-if __name__ == "__main__":
-    import doctest
-    doctest.testmod()
+# if __name__ == "__main__":
+  #  import doctest
+  #  doctest.testmod()
 
 parameters = cgi.FieldStorage()
 

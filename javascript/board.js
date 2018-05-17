@@ -81,7 +81,6 @@ class Spelbord {
         // doe niets als er momenteel geen kleur geselecteerd is
         if(this.geselecteerdekleur !== null){
 
-            console.log(event.target.getAttribute("data-rij"), event.target.getAttribute("data-kolom"));
             // voer de actie uit, en pas alles aan afhankelijk van de data die geretourneerd wordt door het cgi-script
             fetch('cgi-bin/script.py?ACTIE=action&BOARD=' + JSON.stringify(this.json) + "&COLOR=" + this.geselecteerdekleur + "&LOCATION=[" + event.target.getAttribute("data-rij") + "," + event.target.getAttribute("data-kolom") + "]")
                 .then(response => response.json())
@@ -144,11 +143,14 @@ class Spelbord {
 
         // vul de opties in
         for(let i = 0; i < options.length; i++){
+
+            // Voeg de kleur toe als een optie
             this.$options.append($('<div class="kleuroptie" style="background-color: ' + options[i] + ';"></div>')
                 .attr('data-kleur',options[i])
                 .css('height', this.optiegrootte / options.length)
                 .click(this.pasKleurAan.bind(this))
             );
+
         }
 
         // Stel de totale lengte van het select attribuut, afhankelijk van het aantal opties (om een scrollbar te vermijden)

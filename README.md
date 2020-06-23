@@ -1,2 +1,3 @@
 # ProjectScriptingTalen
-Project for the course Scriptingtalen, 1st bachelor ICT, Ugent.
+
+This was a little project for the course "Scriptingtalen".
